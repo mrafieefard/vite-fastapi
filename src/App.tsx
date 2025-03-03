@@ -5,13 +5,26 @@ import './App.css'
 
 const baseUrl = import.meta.env.VITE_BACKEND_URL
 
+interface UserModel{
+  id : number
+  name : string
+}
+
 function App() {
   const [count, setCount] = useState<number | undefined>(undefined)
+  const [user,setUser] = useState<UserModel[]>([])
+  
   useEffect(() => {
     fetch(`${baseUrl}/count`, {
     }).then((value) => {
       value.json().then((value)=>{
         setCount(value.count)
+      })
+    })
+    fetch(`${baseUrl}/users`, {
+    }).then((value) => {
+      value.json().then((value)=>{
+        setUser(value)
       })
     })
   }, [])
@@ -40,6 +53,19 @@ function App() {
         }}>
           count is {count}
         </button>
+        
+        {
+          user.map((value)=>(
+            <div style={{
+              backgroundColor : "grey",
+              marginBottom : "2px",
+              borderRadius : "5px",
+              width : "100%"
+            }}>
+              {value.name}
+            </div>
+          ))
+        }
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>

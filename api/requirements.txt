@@ -2,4 +2,5 @@ fastapi
 uvicorn
 SQLAlchemy
 psycopg2-binary
-openapi-generator-cli
+sqlmodel
+python-decouple
