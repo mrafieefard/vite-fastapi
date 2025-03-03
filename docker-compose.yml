@@ -12,7 +12,7 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
-    ports:
+    expose:
       - ${NGINX_PORT}
     depends_on:
       - backend
