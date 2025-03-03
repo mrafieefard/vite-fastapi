@@ -3,7 +3,6 @@ services:
     build:
       context: ./api
       dockerfile: Dockerfile
-    container_name: backend
     depends_on:
       - db
 
@@ -11,13 +10,11 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
-    container_name: frontend
     depends_on:
       - backend
 
   db:
     image: postgres:16
-    container_name: db
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
