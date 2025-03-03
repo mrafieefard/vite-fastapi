@@ -18,6 +18,22 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Test api
+
+count = 0
+
+@app.post("/count")
+async def count_up():
+    global count
+    count += 1
+    return {"count":count}
+
+@app.get("/count")
+async def get_count():
+    global count
+    return {"count":count}
+
+# Test api
 async def run_fastapi():
     
     config = uvicorn.Config(app, host="0.0.0.0", port=8000, loop="asyncio")
