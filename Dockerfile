@@ -24,7 +24,7 @@ FROM nginx:latest
 RUN rm /etc/nginx/conf.d/default.conf
 
 # Copy custom Nginx configuration
-COPY ./nginx/nginx.conf /etc/nginx/conf.d/
+COPY nginx/nginx.conf /etc/nginx/conf.d/
 
 # Copy the built Vite app files to Nginx's html directory
 COPY --from=build /app/dist /usr/share/nginx/html
