@@ -1,11 +1,20 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+const baseUrl = import.meta.env.VITE_BACKEND_URL
 
+function App() {
+  const [count, setCount] = useState<number | undefined>(undefined)
+  useEffect(() => {
+    fetch(`${baseUrl}/count`, {
+    }).then((value) => {
+      value.json().then((value)=>{
+        setCount(value.count)
+      })
+    })
+  }, [])
   return (
     <>
       <div>
@@ -18,7 +27,17 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button onClick={() => {
+          fetch(`${baseUrl}/count`, {
+            method: "POST"
+          }).then((value) => {
+            value.json().then((value)=>{
+              setCount(value.count)
+            })
+            
+            
+          })
+        }}>
           count is {count}
         </button>
         <p>
