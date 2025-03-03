@@ -24,9 +24,6 @@ async def run_fastapi():
     server = uvicorn.Server(config)
     await server.serve()
 
-def handle_exit(sig, loop):
-    loop.stop()
-
 if __name__ == "__main__":
     try:
         asyncio.run(run_fastapi())       
