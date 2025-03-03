@@ -13,7 +13,7 @@ services:
       context: ./
       dockerfile: Dockerfile
     expose:
-      - ${NGINX_PORT}
+      - 3000
     depends_on:
       - backend
     networks:
